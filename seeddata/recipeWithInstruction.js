@@ -1,0 +1,1 @@
+module.exports = [{"id":648506,"title":"Japanese Sushi","readyInMinutes":45,"image":"Japanese-Sushi-648506.jpg","imageUrls":["Japanese-Sushi-648506.jpg"]}]
