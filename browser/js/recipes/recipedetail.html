@@ -1,13 +1,25 @@
-<div class="container">
-	 <img src= "https://spoonacular.com/recipeImages/Japanese-Sushi-648506.jpg">
-	<div class="caption center">
-		<h4>title: Japanese Sushi</h4>
-		<h4>readyInMinutes: 45</h4>
-		<div class="instructions" ng-model="instructions">
-			<ol><li>Recipe one: Pour cooked rice into a tray. Finely slice the salmon and the tuna.</li><li>Put the seaweed onto a sushi mat and press rice down onto it.</li><li>Slice the mushrooms and asparagus pieces and lay along the rice. Add the wasabi. Roll the sushi and cut into slices. Serve with salmon caviar, wasabi and soy.</li>
-			<li>Recipe two: Squeeze the rice into balls and press the prawns, tuna or salmon into the top.</li>
-			</ol>
-		</div>
+<div class="container" ng-model="recipeDetail">
+	 <img ng-src= "{{recipeDetail.image}}">
+	<div class="caption center" >
+		<h4>Title: {{recipeDetail.title}}</h4>
+		<h4>Prepare Time: {{recipeDetail.readyInMinutes}} minutes</h4>
+	    <div class="instructions">
+		    <h4> Instructions </h4>
+		    <button type="button" class="btn btn-default btn-lg" ng-click="speakstep('back')" >
+		    	<span class="glyphicon glyphicon-backward" name="back" aria-hidden="true"></span>
+		    </button>
+		     <button type="button" class="btn btn-default btn-lg" ng-click="speakstep('play')" >
+	  			<span class="glyphicon glyphicon-play" name="play" value="play" aria-hidden="true"></span>
+	  		</button>
+	  		 <button type="button" class="btn btn-default btn-lg" ng-click="speakstep('next')">
+	  			<span class="glyphicon glyphicon-forward" name="next" value="next" aria-hidden="true"></span>
+	        </button>
+        </div>
+
+		<ol class="instructions">
+			<li ng-repeat="step in instructions">{{step}}</li>		
+		</ol>
+		
 	<div>
 
 </div>

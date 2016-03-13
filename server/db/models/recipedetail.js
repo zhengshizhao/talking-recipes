@@ -20,11 +20,4 @@ var schema = new mongoose.Schema({
  //recipe:[{type: mongoose.Schema.Types.ObjectId, ref:'Recipe'}]
 });
 
-schema.statics.findRecipedetail = function(recipeNum){
-    this.findOne({id: recipeNum})
-    .then(function(res){
-        return res;
-    })
-}
-
 mongoose.model('Recipedetail', schema);
