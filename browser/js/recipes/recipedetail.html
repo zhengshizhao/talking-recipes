@@ -8,12 +8,20 @@
 		    <button type="button" class="btn btn-default btn-lg" ng-click="speakstep('back')" >
 		    	<span class="glyphicon glyphicon-backward" name="back" aria-hidden="true"></span>
 		    </button>
-		     <button type="button" class="btn btn-default btn-lg" ng-click="speakstep('play')" >
+		     <button type="button" class="btn btn-default btn-lg" ng-click="speakstep('start')" >
 	  			<span class="glyphicon glyphicon-play" name="play" value="play" aria-hidden="true"></span>
 	  		</button>
 	  		 <button type="button" class="btn btn-default btn-lg" ng-click="speakstep('next')">
 	  			<span class="glyphicon glyphicon-forward" name="next" value="next" aria-hidden="true"></span>
 	        </button>
+	        <button title="Voice control: say stop, back or next"id="searchbutton" class="btn btn-primary" ng-click="toggleStartStop()" ng-show="!isSpeaking"> 
+					<span class="glyphicon glyphicon-volume-up">
+					</span>
+				</button>
+				<button id="stopbutton" class="btn btn-primary" ng-click="toggleStartStop()" ng-show="isSpeaking">
+					<span class="glyphicon glyphicon-refresh">
+					</span>
+			</button>
         </div>
 
 		<ol class="instructions">

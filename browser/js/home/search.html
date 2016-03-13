@@ -1,7 +1,7 @@
 <div class="row">
     <div class="search col-lg-12">
 	    <div class="input-group">
-			<input id="textinput" class="form-control" value="" cols=80 ng-submit="keyword" ng-keyup="event"> 
+			<input id="textinput" class="form-control" value="" cols=80 ng-submit="keyword" ng-keyup="submit($event)"> 
 			 <span class="input-group-btn">
 				<button id="searchbutton" class="btn btn-primary" ng-click="toggleStartStop()" ng-show="!isSpeaking"> 
 					<span class="glyphicon glyphicon-volume-up">

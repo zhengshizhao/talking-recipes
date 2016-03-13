@@ -11,13 +11,18 @@ app.controller('searchCrl', function($scope,$window,$state){
 	var recognition = new $window.webkitSpeechRecognition();
 	recognition.continuous = true;
 	//recognition.interimResults = true;
+	
 	var text = $window.document.getElementById('textinput');
 	recognition.onend = function(event){
 		if(event) $scope.reset();
 	};
-	console.log("ng-event",$scope.event);
-	$scope.submit = function(){
-		$state.go("recipes")
+    
+	$scope.submit = function(event){
+		console.log("evet",event);
+		if(event.keyCode === 13) {
+			recognition.stop();
+			$state.go("recipes",{cusine: $scope.keyword});
+		}
 	}
 	recognition.onresult = function (event) {
 		
