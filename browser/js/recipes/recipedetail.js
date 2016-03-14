@@ -18,11 +18,41 @@ app.config(function ($stateProvider) {
 
 app.controller('RecipedetailCtl', function ($scope,getRecipeDetail,instruction,ttsFactory,$window) {
 	$scope.recipeDetail = getRecipeDetail;
-	$scope.instructions = instruction(getRecipeDetail.instructions)
-	$scope.count = 0;
-     var cb = function(){
-			recognition.start();
+	$scope.instructions = instruction(getRecipeDetail.instructions);
+	$scope.servingsNum =getRecipeDetail.servings;
+	$scope.ingredients =getRecipeDetail.extendedIngredients;
+	$scope.istrue = function(item){
+		if(item) return "yes";
+		return "no";
 	}
+	$scope.count = 0;
+	$scope.isSpeaking = false;
+
+	$scope.isactive = function(index){
+		return function(num){
+    		return index === num;
+    	}
+    }
+	var recognition = new $window.webkitSpeechRecognition();
+	recognition.continuous = true;
+
+	$scope.toggleStartStop = function(){
+		if($scope.isSpeaking){
+			recognition.stop();
+			$scope.isSpeaking = false;
+			console.log("when stop keyword", $scope.keyword);
+
+		}
+		else {
+			$scope.reset();
+			$scope.keyword = "";
+			$scope.isSpeaking = true;
+			recognition.start();
+			console.log("when start keyword", $scope.keyword);
+		}
+	}
+  
+
 	$scope.speakstep = function(playcontrl){
 		console.log("playcontrl",playcontrl);
 		if(playcontrl==='back') {
@@ -38,53 +68,41 @@ app.controller('RecipedetailCtl', function ($scope,getRecipeDetail,instruction,t
 			$scope.count = 0;
 		}
 		if (!$scope.instructions[$scope.count] && $scope.count !== 0){	
+			$scope.currentstep = false;
 			ttsFactory.speak("Enjoy your"+$scope.recipeDetail.title);
 		}
-		else {
-			
-			ttsFactory.speak($scope.instructions[$scope.count]);
-			$scope.toggleStartStop();
+		else {	
+			$scope.currentstep = $scope.instructions[$scope.count];
+			ttsFactory.speak($scope.instructions[$scope.count]);				
 		}
 	}
-	var recognition = new $window.webkitSpeechRecognition();
-	recognition.continuous = true;
-	//recognition.interimResults = true;
+
+
 	
+	recognition.interimResults = false;
+	
+	$scope.reset = function () {
+        $scope.isSpeaking = false; 
+    }
+
 	recognition.onend = function(event){
+
 		if(event) $scope.reset();
+
 	};
+	
 	recognition.onresult = function (event) {
 		
           for (var i = event.resultIndex; i < event.results.length; ++i) {
             if (!event.results.final) {
             	$scope.keyword = event.results[i][0].transcript;
-            }
-            if (['back','start','next'].indexOf($scope.keyword) !== -1) {
-            	$scope.toggleStartStop();
+            }  
+
+            if (['back','start','next'].indexOf($scope.keyword) !== -1) {	
             	$scope.speakstep($scope.keyword);
-            }
+            }     
         }
-    };
-    $scope.reset = function () {
-        $scope.isSpeaking = false; 
-    }
-	$scope.isSpeaking = false;
-	$scope.toggleStartStop = function(){
-		if($scope.isSpeaking){
-			recognition.stop();
-			$scope.isSpeaking = !$scope.isSpeaking;
-			console.log("when stop keyword", $scope.keyword);
-
-		}
-		else {
-			$scope.reset();
-			$scope.keyword = "";
-			$scope.isSpeaking = !$scope.isSpeaking;
-			recognition.start();
-			console.log("when start keyword", $scope.keyword);
-		}
-	}
-
-	
+        
+    };	
 });
 

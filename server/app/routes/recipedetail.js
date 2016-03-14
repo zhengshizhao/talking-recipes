@@ -15,6 +15,7 @@ router.get('/', function(req, res, next) {
 //get one
 router.get('/:recipeNum', function(req, res, next) {
 	Recipedetail.findOne({id:req.params.recipeNum})
+	.populate('extendedIngredients')
     .then(function(response){
        res.json(response);
     })

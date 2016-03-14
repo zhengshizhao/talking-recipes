@@ -1,7 +1,7 @@
 app.config(function ($stateProvider) {
 
     $stateProvider.state('recipes', {
-        url: '/recipes',
+        url: '/:cusine/recipes',
         controller: 'RecipeCtl',
         templateUrl: 'js/recipes/recipes.html',
         resolve: {
@@ -13,8 +13,10 @@ app.config(function ($stateProvider) {
 
 });
 
-app.controller('RecipeCtl', function ($scope,$state,recipes,ttsFactory) {
-	$scope.recipes = recipes;
+app.controller('RecipeCtl', function ($scope,$state,recipes,ttsFactory,searchService){
+    $scope.mainrecipe = recipes[0];
+    if(recipes.length > 1) $scope.otherrecipes= recipes.slice(1);
+	$scope.cusine = searchService.getcusine();
 	console.log("recipes",recipes);
 
 	$scope.recipedetail = function(NumID){

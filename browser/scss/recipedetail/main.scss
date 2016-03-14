@@ -1,0 +1,32 @@
+#recipedetails {
+	align: center;
+	text-align: left;
+	font-family: "Comic Sans MS",cursive, sans-serif;
+	font-size: 20px;
+	h4 {
+	  font-size: 30px;
+	  color: blue;
+	}
+	img {
+	  display: block;
+      width: 100%;
+      margin: 0 auto;
+	}
+	.caption{
+	text-align: left;
+	}
+	.ingredient {
+	margin: 0;
+	font-size: 15px;
+	}
+	ul {
+	list-style-type: none;
+	padding: 0;
+	}
+	ol {
+	padding: 10px;
+	}
+	.active{
+		color: red;
+	}
+}

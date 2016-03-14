@@ -1,14 +1,26 @@
 #home {
-  fullstack-logo {
-    padding-top: 30px;
+  talking-logo {
+    padding-top: 5px;
     width: 150px;
     margin: 0 auto;
+    margin-bottom: 40px;
   }
-  h1 {
-    margin-top: 40px;
-    text-align: center;
+  .search{
+    margin-top: 30px;
   }
+  form
+    {   margin: 0 auto;
+        align: center;
+    }
+  .microphone {
+    border: 1px;
+    boder-radius: 5px;
+  }
+
 }
+
+
+
 .glyphicon-refresh{
     animation: spin .7s infinite linear;
     -animation: spin .7s infinite linear;

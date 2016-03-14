@@ -5,8 +5,21 @@ app.directive('recipeSearch', function ($state) {
         controller: 'searchCrl'
     };
 });
-
-app.controller('searchCrl', function($scope,$window,$state){
+app.service('searchService', function(){
+	var cusine = "";
+	var addcusine = function(_cusine){
+		cusine = _cusine;
+	}
+	var getcusine = function(){
+		if(cusine.length>=1) return cusine;
+		else return "";
+	}
+	return {
+		addcusine: addcusine,
+		getcusine: getcusine
+	};
+});
+app.controller('searchCrl', function($scope,$window,$state,searchService){
 
 	var recognition = new $window.webkitSpeechRecognition();
 	recognition.continuous = true;
@@ -21,7 +34,7 @@ app.controller('searchCrl', function($scope,$window,$state){
 		console.log("evet",event);
 		if(event.keyCode === 13) {
 			recognition.stop();
-			$state.go("recipes",{cusine: $scope.keyword});
+			$state.go("recipes",{cusine:text.value});
 		}
 	}
 	recognition.onresult = function (event) {
@@ -39,7 +52,7 @@ app.controller('searchCrl', function($scope,$window,$state){
 
           }
         $scope.keyword = text.value;
-        
+        searchService.addcusine($scope.keyword);
          // $scope.keyword = event.results[0][0].transcript;
         // $scope.confidence =  event.results[0][0].confidence;
     };
@@ -62,7 +75,5 @@ app.controller('searchCrl', function($scope,$window,$state){
 			recognition.start();
 			console.log("when start keyword", $scope.keyword);
 		}
-	}
-	
-
+	}	
 })

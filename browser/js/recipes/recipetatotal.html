@@ -1,14 +1,15 @@
-<div class="container" id="recipes" >
+<div class="container" id="recipetatals" >
 
 	<div class="title" >
 		<h2 id='title'>{{cusine}} Talking Recipes</h2>
+		<p id='subtitle'>Try our wonderful recipes.</p>
 	</div>
 	<div class="thumbnail main" ng-model="mainrecipe">
 	    <a ng-click="recipedetail(mainrecipe.id)">
 		<img ng-src= "{{mainrecipe.imaSrc}}"></a>
 		<div class="caption">
 			<h4>Title: {{mainrecipe.title}}</h4>
-			<h4>Time: {{mainrecipe.readyInMinutes}} minutes</h4>
+			<h4>Time: {{mainrecipe.readyInMinutes}}</h4>
 		<div>
 	</div>
 
@@ -23,4 +24,3 @@
  -->
 
 </div>
-

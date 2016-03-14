@@ -25,9 +25,11 @@ var User = Promise.promisifyAll(mongoose.model('User'));
 var users = require('./seeddata/UserDataSet.js');
 var Recipe = Promise.promisifyAll(mongoose.model('Recipe'));
 var Recipedetail = Promise.promisifyAll(mongoose.model('Recipedetail'));
-
+//var Ingredient = Promise.promisifyAll(mongoose.model('Ingredient'));
 var recipewithinstructions = require('./seeddata/recipeWithInstruction.js');
 var recipedetailwithinstructions = require('./seeddata/recipedetailWithInstruction.js');
+//var ingredients = require('./seeddata/ingredient.js');
+
 
 var seedUsers = function () {
   return User.createAsync(users);
@@ -39,7 +41,16 @@ var seedRecipewithinstructions = function () {
 var seedRecipedetailwithinstructions = function () {
   return Recipedetail.createAsync(recipedetailwithinstructions);
 };
+// var seedRecipedetailwithinstructions = function () {
+//   return Recipedetail.createAsync(recipedetailwithinstructions);
+// };
+// var seedIngredients = function () {
+//   return Ingredient.createAsync(ingredients);
+// };
 
+// var seedUsers = function () {
+//   return User.createAsync(users);
+// };
 connectToDb.then(function () {
     return User.findAsync({}).then(function (users) {
         if (users.length === 0) {
@@ -61,12 +72,17 @@ connectToDb.then(function () {
         })
 
     })
+    // .then(function(){
+    //     return seedIngredients();
+    // })
     .then(function(){
+
         return Recipedetail.findAsync({})
             .then(function (recipedetails) {
             if (recipedetails.length === 0) {
-                return seedRecipedetailwithinstructions();
+                return seedRecipedetailwithinstructions();        
             } else {
+                Ingredient.findAsync({})
                 console.log(chalk.magenta('Seems to already be recipedetail data, exiting!'));
                 process.kill(0);
             }
