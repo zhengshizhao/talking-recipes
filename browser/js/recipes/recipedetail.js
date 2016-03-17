@@ -53,13 +53,16 @@ app.controller('RecipedetailCtl', function ($scope,getRecipeDetail,instruction,t
 	}
   
 
-	$scope.speakstep = function(playcontrl){
+	$scope.speakstep = function(playcontrl,micon){
+        if(micon) {$scope.$digest();
+        }
 		console.log("playcontrl",playcontrl);
 		if(playcontrl==='back') {
 			if($scope.count !== 0){
 			    $scope.count--;
 			    $scope.currentstep = $scope.instructions[$scope.count];
-			     $scope.$digest();
+			    // $scope.$digest();
+			     
 			// $scope.$watch('$scope.currentstep');
 		         ttsFactory.speak($scope.instructions[$scope.count]);
 		    }	
@@ -70,8 +73,9 @@ app.controller('RecipedetailCtl', function ($scope,getRecipeDetail,instruction,t
 			if($scope.count < $scope.instructions.length) {
 				$scope.count++;
 			    $scope.currentstep = $scope.instructions[$scope.count];
+			   
+			 $scope.$digest();
 			// $scope.$watch('$scope.currentstep');
-			   $scope.$digest();
 		        ttsFactory.speak($scope.instructions[$scope.count]);
 		        
 	           }
@@ -80,16 +84,18 @@ app.controller('RecipedetailCtl', function ($scope,getRecipeDetail,instruction,t
 		if(playcontrl==='start') {
 			$scope.count = 0;
 
+             if(micon) {$scope.$digest();
+        }
 			$scope.currentstep = $scope.instructions[$scope.count];
-			// $scope.$watch('$scope.currentstep');
-			 $scope.$digest();
+		
+			 // $scope.$digest();
 		     ttsFactory.speak($scope.instructions[$scope.count]);	
 		}
 		if (!$scope.instructions[$scope.count] && $scope.count !== 0){	
 			$scope.currentstep = false;
 			ttsFactory.speak("Enjoy your"+$scope.recipeDetail.title);
 		}
-					
+		 			
 		
 	}
 
@@ -115,7 +121,8 @@ app.controller('RecipedetailCtl', function ($scope,getRecipeDetail,instruction,t
             }  
 
             if (['back','start','next'].indexOf($scope.keyword) !== -1) {
-            	$scope.speakstep($scope.keyword);
+            	var micon = true;
+            	$scope.speakstep($scope.keyword,micon);
             }     
         }
         

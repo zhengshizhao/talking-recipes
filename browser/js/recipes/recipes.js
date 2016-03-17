@@ -20,9 +20,9 @@ app.controller('RecipeCtl', function ($scope,$state,recipes,ttsFactory,searchSer
 	console.log("recipes",recipes);
 
 	$scope.recipedetail = function(NumID){
-		ttsFactory.speak('move to detail', function(){
+		// ttsFactory.speak('move to detail', function(){
 			$state.go("recipedetails",{recipeNum: NumID});
-		});
+		// });
 		
 	}
 });
