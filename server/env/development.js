@@ -17,6 +17,6 @@ module.exports = {
     "callbackURL": "INSERT_GOOGLE_CALLBACK_HERE"
   },
   "SPOONACULAR": {
-    "xMashapekey": "bWvJ7vEWh5mshWUGWqPz2eB8eiAnp1ncWaVjsnEA26E26Q1RI3"
+    "xMashapekey": ""
   }
 };
