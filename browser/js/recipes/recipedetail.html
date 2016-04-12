@@ -34,13 +34,13 @@
     <div class="instructions">
 	    <h4> Instructions </h4>
 	    <div class="contrl">
-		    <button type="button" class="btn btn-default btn-lg" ng-click="speakstep('back')" >
+		    <button type="button" class="btn btn-default btn-lg" ng-click="speakstep('back',true)" >
 		    	<span class="glyphicon glyphicon-backward" name="back" aria-hidden="true"></span>
 		    </button>
-		     <button type="button" class="btn btn-default btn-lg" ng-click="speakstep('start')" >
+		     <button type="button" class="btn btn-default btn-lg" ng-click="speakstep('start',true)" >
 	  			<span class="glyphicon glyphicon-play" name="play" value="play" aria-hidden="true"></span>
 	  		</button>
-	  		 <button type="button" class="btn btn-default btn-lg" ng-click="speakstep('next')">
+	  		 <button type="button" class="btn btn-default btn-lg" ng-click="speakstep('next',true)">
 	  			<span class="glyphicon glyphicon-forward" name="next" value="next" aria-hidden="true"></span>
 	        </button>
 	        <button title="Voice control: say stop, back or next"id="searchbutton" class="btn btn-primary btn-lg" ng-click="toggleStartStop()" ng-show="!isSpeaking"> 

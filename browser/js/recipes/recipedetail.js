@@ -54,8 +54,8 @@ app.controller('RecipedetailCtl', function ($scope,getRecipeDetail,instruction,t
   
 
 	$scope.speakstep = function(playcontrl,micon){
-        if(micon) {$scope.$digest();
-        }
+        // if(micon) {$scope.$digest();
+        // }
 		console.log("playcontrl",playcontrl);
 		if(playcontrl==='back') {
 			if($scope.count !== 0){
@@ -74,7 +74,7 @@ app.controller('RecipedetailCtl', function ($scope,getRecipeDetail,instruction,t
 				$scope.count++;
 			    $scope.currentstep = $scope.instructions[$scope.count];
 			   
-			 $scope.$digest();
+			 // $scope.$digest();
 			// $scope.$watch('$scope.currentstep');
 		        ttsFactory.speak($scope.instructions[$scope.count]);
 		        
@@ -83,9 +83,8 @@ app.controller('RecipedetailCtl', function ($scope,getRecipeDetail,instruction,t
 		}
 		if(playcontrl==='start') {
 			$scope.count = 0;
-
-             if(micon) {$scope.$digest();
-        }
+             // if(micon) {$scope.$digest();
+        //}
 			$scope.currentstep = $scope.instructions[$scope.count];
 		
 			 // $scope.$digest();
